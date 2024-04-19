@@ -17,6 +17,7 @@
 		AF75B2522BD076C800927C54 /* GraficosView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF75B2512BD076C800927C54 /* GraficosView.swift */; };
 		AF75B2542BD07B1B00927C54 /* WeatherAPIViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF75B2532BD07B1B00927C54 /* WeatherAPIViewModel.swift */; };
 		AF75B2572BD07C1300927C54 /* WeatherData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF75B2562BD07C1300927C54 /* WeatherData.swift */; };
+		AFE499FF2BD19D62006973FF /* ForecastData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE499FE2BD19D62006973FF /* ForecastData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 		AF75B2512BD076C800927C54 /* GraficosView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraficosView.swift; sourceTree = "<group>"; };
 		AF75B2532BD07B1B00927C54 /* WeatherAPIViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAPIViewModel.swift; sourceTree = "<group>"; };
 		AF75B2562BD07C1300927C54 /* WeatherData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherData.swift; sourceTree = "<group>"; };
+		AFE499FE2BD19D62006973FF /* ForecastData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +107,7 @@
 			isa = PBXGroup;
 			children = (
 				AF75B2562BD07C1300927C54 /* WeatherData.swift */,
+				AFE499FE2BD19D62006973FF /* ForecastData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -186,6 +189,7 @@
 				AF75B24D2BD0767B00927C54 /* HomeView.swift in Sources */,
 				AF75B23A2BD0756F00927C54 /* MonitorDeCheiasApp.swift in Sources */,
 				AF75B2572BD07C1300927C54 /* WeatherData.swift in Sources */,
+				AFE499FF2BD19D62006973FF /* ForecastData.swift in Sources */,
 				AF75B24B2BD0765200927C54 /* AlagamentosView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
