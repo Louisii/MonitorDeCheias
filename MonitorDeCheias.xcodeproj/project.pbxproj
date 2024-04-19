@@ -18,6 +18,7 @@
 		AF75B2542BD07B1B00927C54 /* WeatherAPIViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF75B2532BD07B1B00927C54 /* WeatherAPIViewModel.swift */; };
 		AF75B2572BD07C1300927C54 /* WeatherData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF75B2562BD07C1300927C54 /* WeatherData.swift */; };
 		AF871B2B2BD2FB3100716763 /* Sheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF871B2A2BD2FB3100716763 /* Sheet.swift */; };
+		AF871B2D2BD313AD00716763 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF871B2C2BD313AD00716763 /* Utils.swift */; };
 		AFE499FF2BD19D62006973FF /* ForecastData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE499FE2BD19D62006973FF /* ForecastData.swift */; };
 /* End PBXBuildFile section */
 
@@ -34,6 +35,7 @@
 		AF75B2532BD07B1B00927C54 /* WeatherAPIViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAPIViewModel.swift; sourceTree = "<group>"; };
 		AF75B2562BD07C1300927C54 /* WeatherData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherData.swift; sourceTree = "<group>"; };
 		AF871B2A2BD2FB3100716763 /* Sheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Sheet.swift; path = ../../../../../../../Downloads/MonitorDeCheias/MonitorDeCheias/View/Sheet.swift; sourceTree = "<group>"; };
+		AF871B2C2BD313AD00716763 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Utils.swift; path = ../../../../../../Downloads/MonitorDeCheias/MonitorDeCheias/Utils.swift; sourceTree = "<group>"; };
 		AFE499FE2BD19D62006973FF /* ForecastData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -67,6 +69,7 @@
 		AF75B2382BD0756F00927C54 /* MonitorDeCheias */ = {
 			isa = PBXGroup;
 			children = (
+				AF871B2C2BD313AD00716763 /* Utils.swift */,
 				AF75B2492BD075A700927C54 /* Model */,
 				AF75B2482BD0759B00927C54 /* ViewModel */,
 				AF75B2472BD0758300927C54 /* View */,
@@ -192,6 +195,7 @@
 				AF75B24D2BD0767B00927C54 /* HomeView.swift in Sources */,
 				AF871B2B2BD2FB3100716763 /* Sheet.swift in Sources */,
 				AF75B23A2BD0756F00927C54 /* MonitorDeCheiasApp.swift in Sources */,
+				AF871B2D2BD313AD00716763 /* Utils.swift in Sources */,
 				AF75B2572BD07C1300927C54 /* WeatherData.swift in Sources */,
 				AFE499FF2BD19D62006973FF /* ForecastData.swift in Sources */,
 				AF75B24B2BD0765200927C54 /* AlagamentosView.swift in Sources */,

@@ -63,7 +63,7 @@ struct HomeView: View {
             
             VStack{
                 Rectangle()
-//                    .clipShape(RoundedCorner(radius: 30, corners: [.bottomLeft, .bottomRight]))
+                    .clipShape(RoundedCorner(radius: 30, corners: [.bottomLeft, .bottomRight]))
                     .shadow(color: Color.black, radius: 10, y: -5)
                     .foregroundStyle(LinearGradient(stops: [
                         Gradient.Stop(color: .white, location: -0.6),
@@ -94,9 +94,9 @@ struct HomeView: View {
 }
 
 extension HomeView {
-//    func cornerRadius(_ radius: CGFloat, corners: UIRectCorner) -> some View {
-////        clipShape(RoundedCorner(radius: radius, corners: corners))
-//    }
+    func cornerRadius(_ radius: CGFloat, corners: UIRectCorner) -> some View {
+        clipShape(RoundedCorner(radius: radius, corners: corners))
+    }
 }
 
 #Preview {
