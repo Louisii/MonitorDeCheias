@@ -11,6 +11,7 @@ import Charts
 struct GraficosView: View {
     
     @StateObject var leituraViewModel = LeituraSensorViewModel()
+    let linearGradient = LinearGradient(gradient: Gradient(colors: [.red.opacity(0.4),.orange.opacity(0.4), .blue.opacity(0.4),.blue.opacity(0.2)]),startPoint: .top, endPoint: .bottom)
     
     
     var body: some View {
@@ -19,18 +20,33 @@ struct GraficosView: View {
             
             
             GroupBox ( "Histórico de cheias") {
-                Text(leituraViewModel.leiturasHistorico.first?.bairro ?? "").padding(.vertical)
+                if(leituraViewModel.leiturasHistorico.first != nil){
+                    Text("\(leituraViewModel.leiturasHistorico.first?.bairro ?? "" ), \(leituraViewModel.leiturasHistorico.first?.cidade ?? "" ) - \(leituraViewModel.leiturasHistorico.first?.estado ?? "" )").padding(.vertical)
+                }
                 Chart{
                     ForEach(leituraViewModel.chartdata){ data in
-                        
                         
                         LineMark(x: .value("Data", data.date),
                                  y: .value("Nível", data.value)
                         )
-                       
                         
-                    }
-                }.padding(.top)
+                    }  .foregroundStyle(.red.opacity(0.4))
+                        
+                    
+                    ForEach(leituraViewModel.chartdata){ data in
+                        AreaMark(x: .value("Data", data.date),
+                                 y: .value("Nível", data.value)
+                        )}
+                              
+                               .foregroundStyle(linearGradient)
+                    
+                    
+                }
+//                .chartXAxis {
+//                    AxisMarks(values: [0.0, 1.0, 2.0, 3.0], )
+//                }
+                
+                .padding(.top)
                 
             }.padding(.vertical).padding()
             

@@ -76,11 +76,11 @@ class LeituraSensorViewModel : ObservableObject {
         for sensor in sortedSensors {
             let value: Double
             if sensor.sensorAlaga {
-                value = 2.0
+                value = 3.0
             } else if sensor.sensorAlerta {
-                value = 1.0
+                value = 2.0
             } else {
-                value = 0.0
+                value = 1.0
             }
             
             let dateFormatter = DateFormatter()
