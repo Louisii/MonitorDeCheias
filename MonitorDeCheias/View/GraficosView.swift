@@ -6,29 +6,45 @@
 //
 
 import SwiftUI
+import Charts
 
 struct GraficosView: View {
+    
     @StateObject var leituraViewModel = LeituraSensorViewModel()
+    
+    
     var body: some View {
-        ScrollView  {
-            VStack{
-                ForEach(leituraViewModel.leituras, id: \.self){ leitura in
-                    
-                    VStack(alignment: .leading){
-                        Text(leitura.deviceID)
-                        Text("sensor alerta: \(leitura.sensorAlerta)")
-                        Text("sensor alaga: \(leitura.sensorAlaga)")
-                        Text(leitura.deviceID)
-                        Text("\(NSDate(timeIntervalSince1970: leitura.data))")
-                    }.padding().background()
-                    
-                }
-            }.onAppear(){
-                leituraViewModel.fetchAllLeituras()
+        
+        VStack{
+            
+            
+            GroupBox ( "Histórico de cheias") {
+                Text(leituraViewModel.leiturasHistorico.first?.bairro ?? "").padding(.vertical)
+                Chart{
+                    ForEach(leituraViewModel.chartdata){ data in
+                        
+                        
+                        LineMark(x: .value("Data", data.date),
+                                 y: .value("Nível", data.value)
+                        )
+                       
+                        
+                    }
+                }.padding(.top)
+                
+            }.padding(.vertical).padding()
+            
+            
+        }.onAppear(){
+            leituraViewModel.fetchHistorio()
         }
-        }
+        
     }
+    
+    
+    
 }
+
 
 #Preview {
     GraficosView()

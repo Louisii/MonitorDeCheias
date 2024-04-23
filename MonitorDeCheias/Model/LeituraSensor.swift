@@ -14,8 +14,13 @@ struct LeituraSensor: Codable, Hashable {
     let deviceID: String
     let sensorAlerta: Bool
     let sensorAlaga: Bool
-    let data: Double
-//    para converter timestamp para data: Text("\(NSDate(timeIntervalSince1970: leitura.data))")
+    let rua: String
+    let bairro: String
+    let cidade: String
+    let estado: String
+    let latitude: Double
+    let longitude: Double
+    let data: String
     
-   
+    
 }

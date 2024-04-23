@@ -22,6 +22,7 @@
 		AFE499FF2BD19D62006973FF /* ForecastData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE499FE2BD19D62006973FF /* ForecastData.swift */; };
 		AFEBE2DC2BD6C882000A0C3A /* LeituraSensorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFEBE2DB2BD6C882000A0C3A /* LeituraSensorViewModel.swift */; };
 		AFEBE2DE2BD6C8BE000A0C3A /* LeituraSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFEBE2DD2BD6C8BE000A0C3A /* LeituraSensor.swift */; };
+		AFEBE2E22BD6D4EA000A0C3A /* GraficoHostoricoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFEBE2E12BD6D4EA000A0C3A /* GraficoHostoricoData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +42,7 @@
 		AFE499FE2BD19D62006973FF /* ForecastData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastData.swift; sourceTree = "<group>"; };
 		AFEBE2DB2BD6C882000A0C3A /* LeituraSensorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeituraSensorViewModel.swift; sourceTree = "<group>"; };
 		AFEBE2DD2BD6C8BE000A0C3A /* LeituraSensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeituraSensor.swift; sourceTree = "<group>"; };
+		AFEBE2E12BD6D4EA000A0C3A /* GraficoHostoricoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraficoHostoricoData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +122,7 @@
 				AF75B2562BD07C1300927C54 /* WeatherData.swift */,
 				AFE499FE2BD19D62006973FF /* ForecastData.swift */,
 				AFEBE2DD2BD6C8BE000A0C3A /* LeituraSensor.swift */,
+				AFEBE2E12BD6D4EA000A0C3A /* GraficoHostoricoData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -197,6 +200,7 @@
 				AF75B24F2BD076A900927C54 /* AlertasView.swift in Sources */,
 				AF75B23C2BD0756F00927C54 /* ContentView.swift in Sources */,
 				AF75B2522BD076C800927C54 /* GraficosView.swift in Sources */,
+				AFEBE2E22BD6D4EA000A0C3A /* GraficoHostoricoData.swift in Sources */,
 				AF75B2542BD07B1B00927C54 /* WeatherAPIViewModel.swift in Sources */,
 				AF75B24D2BD0767B00927C54 /* HomeView.swift in Sources */,
 				AF871B2B2BD2FB3100716763 /* Sheet.swift in Sources */,
