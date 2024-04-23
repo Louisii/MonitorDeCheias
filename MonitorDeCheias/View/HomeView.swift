@@ -8,58 +8,62 @@
 import SwiftUI
 import MapKit
 
-struct Location : Identifiable{
-    let id = UUID()
-    let name : String
-    let coordinate: CLLocationCoordinate2D
-}
-
 struct HomeView: View {
+    @StateObject var leituraViewModel = LeituraSensorViewModel()
     
     @State var position = MapCameraPosition.region(MKCoordinateRegion(
         center: CLLocationCoordinate2D(latitude: -27.6109852, longitude: -48.5489548),
-        span: MKCoordinateSpan(latitudeDelta: 0.2, longitudeDelta: 0.2)
+        span: MKCoordinateSpan(latitudeDelta: 0.3, longitudeDelta: 0.3)
     ))
     
     @State private var search: String = ""
-    @State private var selectedLocation: Location =  Location(name: "Rio Tavares", coordinate: CLLocationCoordinate2D(latitude: -27.6836, longitude: -48.4861))
+    
+//    @State private var selectedLocation: LeituraSensor = LeituraSensor(_id: "008da5e661fbb852b55c715d448f10dc", _rev: "d71c24c83b90f3db2e9219f944b3a717", deviceID: "testeHackaTruck", sensorAlerta: false, sensorAlaga: false, rua: "R. João Pereira dos Santos", bairro: "Ponte do Imaruim", cidade: "Palhoça", estado: "SC", data: "22/04/2024 16:35:02", latitude: -27.6355501, longitude: -48.6534832)
+    var selectedLocation: LeituraSensor {
+        return leituraViewModel.leituras.last!
+    }
+    
+    
     @State private var showingSheet = false
     
-    var locations = [
-        Location(name: "Rio Tavares", coordinate: CLLocationCoordinate2D(latitude: -27.6836, longitude: -48.4861)),
-        Location(name: "Centro", coordinate: CLLocationCoordinate2D(latitude: -27.597300, longitude: -48.549610 ))
-    ]
-    
-    var searchResults: [Location] {
-            return locations.filter { $0.name.localizedCaseInsensitiveContains(search) }
+    var searchResults: [LeituraSensor] {
+        return leituraViewModel.leituras.filter{ $0.bairro.localizedCaseInsensitiveContains(search)}
         }
-//    func searchRegion(search: String) {
-//        if(search ){
-//
-//        }
-//    }
-    
+    @State var weatherColor: String = ""
+    func checkAlert(){
+        if selectedLocation.sensorAlerta == true{
+            weatherColor = "chuvamoderada"
+        } else if selectedLocation.sensorAlaga == true{
+            weatherColor = "chuvamuitoforte"
+        } else {
+            weatherColor = "secondarycolor"
+        }
+    }
+
     var body: some View {
         ZStack{
             Map(position: $position){
-                ForEach(locations) { location in
-                    Annotation(location.name, coordinate: location.coordinate) {
-                        Image(systemName: "mappin.and.ellipse")
-                            .imageScale(.large)
-                            .foregroundStyle(Color.red)
-                            .onTapGesture {
-                                selectedLocation = location
+                ForEach(leituraViewModel.leituras, id: \.self){ leitura in
+                    Annotation(leitura.deviceID ,coordinate: CLLocationCoordinate2D(latitude: leitura.latitude, longitude: leitura.longitude)) {
+                        ZStack {
+                            Circle()
+                                .fill(Color(weatherColor))
+                                .frame(width: 28, height: 28)
+                            Image(systemName: "mappin").foregroundColor(.white).onTapGesture{
+                                print(leituraViewModel.leituras)
+                                //selectedLocation = leitura
                                 showingSheet = true
-                               
                             }
+                        }.onAppear(){
+                            checkAlert()
+                        }
                     }
                 }
             }
             .sheet(isPresented: $showingSheet) {
-                Sheet(selectedLocation: $selectedLocation)
+                Sheet(selectedLocation: $leituraViewModel.leituras.last!)
             }
             .animation(.easeInOut(duration: 2)).ignoresSafeArea()
-            
             
             VStack{
                 Rectangle()
@@ -73,10 +77,9 @@ struct HomeView: View {
                         .overlay(
                             TextField("Procure uma região", text: $search, onCommit: {
                                 if let foundLocation = searchResults.first {
-                                    selectedLocation = foundLocation
                                     position = MapCameraPosition.region(
                                         MKCoordinateRegion(center: CLLocationCoordinate2D(
-                                            latitude: foundLocation.coordinate.latitude, longitude: foundLocation.coordinate.longitude)
+                                            latitude: foundLocation.latitude, longitude: foundLocation.longitude)
                                                            ,span:
                                                             MKCoordinateSpan(latitudeDelta: 0.03, longitudeDelta: 0.03)))
                                     }
@@ -89,7 +92,9 @@ struct HomeView: View {
                         .ignoresSafeArea()
                         Spacer()
             }
-        }
+        }.onAppear(){
+            leituraViewModel.fetchAllLeituras()
+    }
     }
 }
 

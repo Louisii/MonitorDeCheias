@@ -30,14 +30,15 @@ struct GraficosView: View {
                                  y: .value("Nível", data.value)
                         )
                         
-                    }  .foregroundStyle(.red.opacity(0.4))
+                    } 
+                    .interpolationMethod(.catmullRom) .foregroundStyle(.red.opacity(0.4))
                         
                     
                     ForEach(leituraViewModel.chartdata){ data in
                         AreaMark(x: .value("Data", data.date),
                                  y: .value("Nível", data.value)
                         )}
-                              
+                    .interpolationMethod(.catmullRom)
                                .foregroundStyle(linearGradient)
                     
                     
