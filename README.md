@@ -33,4 +33,4 @@ Além do aplicativo iOS, este projeto inclui uma configuração Node-RED para fa
 <img src="readmeImages/print-node-red-flow.jpg" width="800">
 
 ### Sobre o Projeto
-Desenvolvido durante o curso HackaTruck pelos alunos Arthur Sauer, Giuseppe Castro, Louisi Dalazen e Vinicius Vinicius Matheus.
+Desenvolvido durante o curso HackaTruck pelos alunos Arthur Sauer, Giuseppe Castro, Louisi Dalazen e Vinicius Matheus de Souza.
