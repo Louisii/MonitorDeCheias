@@ -32,7 +32,7 @@ struct HomeView: View {
     @State var weatherColor: String = ""
     func checkAlert(){
         if selectedLocation.sensorAlerta == true{
-            weatherColor = "chuvamoderada"
+            weatherColor = "coloralert"
         } else if selectedLocation.sensorAlaga == true{
             weatherColor = "chuvamuitoforte"
         } else {

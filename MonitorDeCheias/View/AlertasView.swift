@@ -46,7 +46,7 @@ struct AlertasView: View {
                             ForEach(viewModel.forecastData!.list!, id: \.self){item in
                                 if let rain = item.rain?.threeH, rain > 0 {
                                     let bgColor: Color = {
-                                        switch rain/3 {
+                                        switch rain {
 //                                        case 0..<2.5: return Color("chuvaleve")
                                         case 2.5..<10: return Color("chuvamoderada")
                                         case 10..<50: return Color("chuvaforte")
@@ -59,7 +59,7 @@ struct AlertasView: View {
                                     HStack{
                                         Spacer()
                                         
-                                        switch rain/3 {
+                                        switch rain {
                                         case 0..<2.5:
                                             Image(systemName: "cloud.sun.rain.fill").font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
                                           
@@ -76,7 +76,7 @@ struct AlertasView: View {
                                         Spacer()
                                         VStack(alignment: .leading){
                                             
-                                            switch rain/3 {
+                                            switch rain {
                                             case 0..<2.5:
                                                 Text("Previsão de chuva fraca").font(.headline)
                                             case 2.5..<10:

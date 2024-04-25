@@ -15,7 +15,7 @@ class LeituraSensorViewModel : ObservableObject {
     
     func fetchAllLeituras(){
         guard let url = URL(string:
-        "http://127.0.0.1:1880/leitura/hacka/teste"
+        "http://192.168.128.244:1880/leitura/hacka/teste"
         
         ) else{
             return
@@ -42,7 +42,7 @@ class LeituraSensorViewModel : ObservableObject {
     }
     func fetchHistorio(){
         guard let url = URL(string:
-        "http://127.0.0.1:1880/leitura/hacka/teste/historico"
+        "http://192.168.128.244:1880/leitura/hacka/teste/historico"
         
         ) else{
             return
