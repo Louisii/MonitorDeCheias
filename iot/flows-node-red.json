@@ -1,0 +1,395 @@
+[
+    {
+        "id": "176e0b37108ff857",
+        "type": "tab",
+        "label": "Projeto Final",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "9d74da1f9e559224",
+        "type": "http in",
+        "z": "176e0b37108ff857",
+        "name": "",
+        "url": "leitura/hacka/teste",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 190,
+        "y": 280,
+        "wires": [
+            [
+                "216537366c5f5429"
+            ]
+        ]
+    },
+    {
+        "id": "d701f005acc5c894",
+        "type": "debug",
+        "z": "176e0b37108ff857",
+        "name": "debug 11",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 730,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "c1af399c9fd88b94",
+        "type": "ibmiot in",
+        "z": "176e0b37108ff857",
+        "authentication": "apiKey",
+        "apiKey": "842d63a9feb6d987",
+        "inputType": "evt",
+        "logicalInterface": "",
+        "ruleId": "",
+        "deviceId": "",
+        "applicationId": "",
+        "deviceType": "+",
+        "eventType": "+",
+        "commandType": "",
+        "format": "json",
+        "name": "IBM IoT",
+        "service": "registered",
+        "allDevices": "",
+        "allApplications": "",
+        "allDeviceTypes": true,
+        "allLogicalInterfaces": "",
+        "allEvents": true,
+        "allCommands": "",
+        "allFormats": "",
+        "qos": 0,
+        "x": 130,
+        "y": 340,
+        "wires": [
+            [
+                "a1782763f7640bac",
+                "4ef85804c5cc96f1"
+            ]
+        ]
+    },
+    {
+        "id": "a1782763f7640bac",
+        "type": "function",
+        "z": "176e0b37108ff857",
+        "name": "func MONIT",
+        "func": "let sensorAlerta = (msg.payload.d.sensorAlerta == 0) ? false : true;\nlet sensorAlaga = (msg.payload.d.sensorAlaga == 0) ? false : true;\nlet deviceID = msg.payload.d.deviceID;\nlet lat = -27.6355501;\nlet lon = -48.6534832;\nlet rua = \"Rua João Pereira dos Santos\";\nlet bairro = \"Ponte do Imaruim\";\nlet cidade = \"Palhoça\";\nlet estado = \"SC\";\nlet data = new Date();\nlet dataTexto = data.toLocaleString();\n\n\nmsg.payload = {\n\n    \"deviceID\": deviceID,\n    \"sensorAlerta\": sensorAlerta,\n    \"sensorAlaga\": sensorAlaga,\n    \"rua\": rua,\n    \"bairro\": bairro,\n    \"cidade\": cidade,\n    \"estado\": estado,\n    \"latitude\": lat,\n    \"longitude\": lon,\n    \"data\": dataTexto\n\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 390,
+        "y": 340,
+        "wires": [
+            [
+                "6d122b6a15a63741"
+            ]
+        ]
+    },
+    {
+        "id": "b9d1839eb7faa162",
+        "type": "http response",
+        "z": "176e0b37108ff857",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 750,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "8024f0c51496b51f",
+        "type": "debug",
+        "z": "176e0b37108ff857",
+        "name": "debug 14",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 800,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "6d122b6a15a63741",
+        "type": "cloudantplus out",
+        "z": "176e0b37108ff857",
+        "name": "POST MONIT",
+        "cloudant": "07c31780d58481fb",
+        "database": "bancoteste25",
+        "service": "_ext_",
+        "payonly": true,
+        "operation": "insert",
+        "x": 580,
+        "y": 340,
+        "wires": [
+            [
+                "8024f0c51496b51f"
+            ]
+        ]
+    },
+    {
+        "id": "216537366c5f5429",
+        "type": "cloudantplus in",
+        "z": "176e0b37108ff857",
+        "name": "GET ALL MONIT",
+        "cloudant": "07c31780d58481fb",
+        "database": "bancoteste25",
+        "service": "_ext_",
+        "search": "_all_",
+        "design": "",
+        "index": "",
+        "x": 520,
+        "y": 280,
+        "wires": [
+            [
+                "d701f005acc5c894",
+                "b9d1839eb7faa162"
+            ]
+        ]
+    },
+    {
+        "id": "00eaf8270cb368b1",
+        "type": "http in",
+        "z": "176e0b37108ff857",
+        "name": "",
+        "url": "leitura/hacka/teste/historico",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 270,
+        "y": 620,
+        "wires": [
+            [
+                "e74bbe5b9fae1c9c"
+            ]
+        ]
+    },
+    {
+        "id": "35afdc0f7dc814ff",
+        "type": "debug",
+        "z": "176e0b37108ff857",
+        "name": "debug 16",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 810,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "b4b4495f96aac34e",
+        "type": "http response",
+        "z": "176e0b37108ff857",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 830,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "e74bbe5b9fae1c9c",
+        "type": "cloudantplus in",
+        "z": "176e0b37108ff857",
+        "name": "GET ALL HIST",
+        "cloudant": "07c31780d58481fb",
+        "database": "testehist23",
+        "service": "_ext_",
+        "search": "_all_",
+        "design": "",
+        "index": "",
+        "x": 590,
+        "y": 620,
+        "wires": [
+            [
+                "35afdc0f7dc814ff",
+                "b4b4495f96aac34e"
+            ]
+        ]
+    },
+    {
+        "id": "4ef85804c5cc96f1",
+        "type": "function",
+        "z": "176e0b37108ff857",
+        "name": "func HIST",
+        "func": "let sensorAlerta = (msg.payload.d.sensorAlerta == 0) ? false : true;\nlet sensorAlaga = (msg.payload.d.sensorAlaga == 0) ? false : true;\nlet deviceID = msg.payload.d.deviceID;\nlet lat = -27.6355501;\nlet lon = -48.6534832;\nlet rua = \"Rua João Pereira dos Santos\";\nlet bairro = \"Ponte do Imaruim\";\nlet cidade = \"Palhoça\";\nlet estado = \"SC\";\nlet data = new Date();\nlet dataTexto = data.toLocaleString();\n\n\nmsg.payload = {\n\n    \"deviceID\": deviceID,\n    \"sensorAlerta\": sensorAlerta,\n    \"sensorAlaga\": sensorAlaga,\n    \"rua\": rua,\n    \"bairro\": bairro,\n    \"cidade\": cidade,\n    \"estado\": estado,\n    \"latitude\": lat,\n    \"longitude\": lon,\n    \"data\": dataTexto\n\n}\nvar historico = {\n\n    \"deviceID\": deviceID,\n    \"sensorAlerta\": false,\n    \"sensorAlaga\": false,\n    \"rua\": rua,\n    \"bairro\": bairro,\n    \"cidade\": cidade,\n    \"estado\": estado,\n    \"latitude\": lat,\n    \"longitude\": lon,\n    \"data\": null\n}\n\nvar count = context.get('count') || 0;\ncount+=1;\ncontext.set('count', count);\n\nvar objHist = context.get('data') || historico\n\nif(sensorAlaga && sensorAlerta){\n    context.set('data', msg.payload);\n}else if(sensorAlerta && !sensorAlaga && !objHist.sensorAlaga){\n    context.set('data', msg.payload);\n}\n\nif(count==5){\n    if(objHist.data===null){\n        objHist=msg.payload;\n        context.set('data', msg.payload);\n    }\n    msg.payload=objHist;\n    count=0;\n    context.set('count', count);\n    objHist=historico;\n    context.set('data', objHist);\n    return msg;\n}\n\n\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 380,
+        "y": 460,
+        "wires": [
+            [
+                "020ea2e3b6c2f137"
+            ]
+        ]
+    },
+    {
+        "id": "020ea2e3b6c2f137",
+        "type": "cloudantplus out",
+        "z": "176e0b37108ff857",
+        "name": "POST HIST",
+        "cloudant": "07c31780d58481fb",
+        "database": "testehist23",
+        "service": "_ext_",
+        "payonly": true,
+        "operation": "insert",
+        "x": 590,
+        "y": 460,
+        "wires": [
+            [
+                "5fbe26503dc4b80f"
+            ]
+        ]
+    },
+    {
+        "id": "5fbe26503dc4b80f",
+        "type": "debug",
+        "z": "176e0b37108ff857",
+        "name": "debug 17",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 800,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "039e2b3ece5c840b",
+        "type": "http in",
+        "z": "176e0b37108ff857",
+        "name": "",
+        "url": "remover/hacka/teste",
+        "method": "delete",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 300,
+        "y": 920,
+        "wires": [
+            [
+                "98bce1e20bf749ca",
+                "3b48c1dedfcccdd9"
+            ]
+        ]
+    },
+    {
+        "id": "3b48c1dedfcccdd9",
+        "type": "http response",
+        "z": "176e0b37108ff857",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 630,
+        "y": 1000,
+        "wires": []
+    },
+    {
+        "id": "98bce1e20bf749ca",
+        "type": "cloudantplus out",
+        "z": "176e0b37108ff857",
+        "name": "DELETE MONIT",
+        "cloudant": "07c31780d58481fb",
+        "database": "bancoteste25",
+        "service": "_ext_",
+        "payonly": true,
+        "operation": "delete",
+        "x": 670,
+        "y": 880,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "0c7d4e1995828a57",
+        "type": "function",
+        "z": "176e0b37108ff857",
+        "name": "func MONIT",
+        "func": "let sensorAlerta = true;\nlet sensorAlaga = true;\nlet deviceID = \"testeHackaTruck\";\nlet lat = -27.6355501;\nlet lon = -48.6534832;\nlet rua = \"Rua João Pereira dos Santos\";\nlet bairro = \"Ponte do Imaruim\";\nlet cidade = \"Palhoça\";\nlet estado = \"SC\";\nlet data = new Date();\nlet dataTexto = data.toLocaleString();\n\n\nmsg.payload = {\n\n    \"deviceID\": deviceID,\n    \"sensorAlerta\": sensorAlerta,\n    \"sensorAlaga\": sensorAlaga,\n    \"rua\": rua,\n    \"bairro\": bairro,\n    \"cidade\": cidade,\n    \"estado\": estado,\n    \"latitude\": lat,\n    \"longitude\": lon,\n    \"data\": dataTexto\n\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 210,
+        "y": 1380,
+        "wires": [
+            [
+                "0cb382f3dd4148bb"
+            ]
+        ]
+    },
+    {
+        "id": "95103e21ddb272cd",
+        "type": "debug",
+        "z": "176e0b37108ff857",
+        "name": "debug 18",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 610,
+        "y": 1380,
+        "wires": []
+    },
+    {
+        "id": "0cb382f3dd4148bb",
+        "type": "cloudantplus out",
+        "z": "176e0b37108ff857",
+        "name": "POST MONIT",
+        "cloudant": "07c31780d58481fb",
+        "database": "bancoteste25",
+        "service": "_ext_",
+        "payonly": true,
+        "operation": "insert",
+        "x": 410,
+        "y": 1380,
+        "wires": [
+            [
+                "95103e21ddb272cd"
+            ]
+        ]
+    },
+    {
+        "id": "842d63a9feb6d987",
+        "type": "ibmiot",
+        "name": "boia",
+        "keepalive": "60",
+        "serverName": "xzjayz.messaging.internetofthings.ibmcloud.com",
+        "cleansession": true,
+        "appId": "testeHackaTruck",
+        "shared": false
+    },
+    {
+        "id": "07c31780d58481fb",
+        "type": "cloudantplus",
+        "host": "https://3e3afcde-b7e3-44b2-845e-40261f160a03-bluemix.cloudantnosqldb.appdomain.cloud",
+        "name": "",
+        "useapikey": true
+    }
+]
