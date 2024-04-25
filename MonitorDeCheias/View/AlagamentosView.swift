@@ -8,9 +8,36 @@
 import SwiftUI
 
 struct AlagamentosView: View {
+    @StateObject var leituraViewModel = LeituraSensorViewModel()
+    
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
+        NavigationView(){
+                List{
+                    ForEach(leituraViewModel.leituras.suffix(5).reversed(), id: \.self){ leitura in
+                        HStack{
+                            Image(systemName: "exclamationmark.triangle.fill")
+                                .resizable()
+                                .frame(width: 30, height: 30)
+                                .foregroundStyle(Color("chuvamuitoforte"))
+                            
+                            Text("\(leitura.bairro), \(leitura.cidade)")
+                                .font(.title3)
+                            
+                            VStack{
+                                Text(leitura.data)
+                            }
+                        }
+                        .padding(.vertical, 10)
+                        
+                    }
+                }
+                .navigationTitle("Alagamentos")
+                .onAppear(){
+                    leituraViewModel.fetchAllLeituras()
+                }
+            }
+        }
 }
 
 #Preview {

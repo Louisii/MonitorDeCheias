@@ -31,7 +31,9 @@ class LeituraSensorViewModel : ObservableObject {
                 let parsed = try JSONDecoder().decode([LeituraSensor].self, from: data)
                     DispatchQueue.main.async {
                         self?.leituras = parsed.sorted { $0.data < $1.data }
+                        print("fetch")
                     }
+                
                 
             }catch{
                 print(error)

@@ -136,6 +136,6 @@ void loop() {
     Serial.println(client.state());
   }
 
-  delay(3000);
+  delay(10000);
 
 }

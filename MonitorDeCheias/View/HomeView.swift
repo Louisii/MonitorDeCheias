@@ -31,9 +31,9 @@ struct HomeView: View {
         }
     @State var weatherColor: String = ""
     func checkAlert(){
-        if selectedLocation.sensorAlerta == true{
+        if selectedLocation.sensorAlerta == true && selectedLocation.sensorAlaga == false{
             weatherColor = "coloralert"
-        } else if selectedLocation.sensorAlaga == true{
+        } else if selectedLocation.sensorAlaga == true && selectedLocation.sensorAlerta == true{
             weatherColor = "chuvamuitoforte"
         } else {
             weatherColor = "secondarycolor"
@@ -48,7 +48,7 @@ struct HomeView: View {
                         ZStack {
                             Circle()
                                 .fill(Color(weatherColor))
-                                .frame(width: 28, height: 28)
+                                .frame(width: 30, height: 30)
                             Image(systemName: "mappin").foregroundColor(.white).onTapGesture{
                                 print(leituraViewModel.leituras)
                                 //selectedLocation = leitura
@@ -73,7 +73,7 @@ struct HomeView: View {
                         Gradient.Stop(color: .white, location: -0.6),
                         Gradient.Stop(color: Color("primarycolor"), location: 1),
                     ], startPoint: .top, endPoint: .bottom))
-                        .frame(height: 100)
+                        .frame(height: 130)
                         .overlay(
                             TextField("Procure uma região", text: $search, onCommit: {
                                 if let foundLocation = searchResults.first {
@@ -84,7 +84,7 @@ struct HomeView: View {
                                                             MKCoordinateSpan(latitudeDelta: 0.03, longitudeDelta: 0.03)))
                                     }
                                 })
-                                .frame(height: 40)
+                                .frame(height: 50)
                                 .padding(.horizontal, 60)
                                 .background(RoundedRectangle(cornerRadius: 25.0)
                                     .foregroundStyle(Color.white)
@@ -94,6 +94,11 @@ struct HomeView: View {
             }
         }.onAppear(){
             leituraViewModel.fetchAllLeituras()
+                       // Schedule a repeating timer that fires every second
+                       Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
+                           leituraViewModel.fetchAllLeituras()
+                       }
+                       
     }
     }
 }
